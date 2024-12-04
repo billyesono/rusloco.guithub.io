@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solicitud de Contacto - MusicZone Pro</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Estilos del header */
+        .header {
+            background: linear-gradient(to right, #1e3c72, #2a5298);
+            padding: 15px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .header.scrolled {
+            padding: 10px 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .nav-link {
+            color: white !important;
+            margin: 0 15px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: white;
+            bottom: -5px;
+            left: 0;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .logo-text {
+            font-size: 24px;
+            font-weight: bold;
+            background: linear-gradient(45deg, #fff, #a8c0ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            transition: all 0.3s ease;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .music-bars {
+            display: flex;
+            gap: 3px;
+            height: 20px;
+            align-items: flex-end;
+        }
+
+        .music-bar {
+            width: 3px;
+            background: white;
+            animation: musicBars 1.5s ease-in-out infinite;
+        }
+
+        .music-bar:nth-child(1) { height: 15px; animation-delay: 0.2s; }
+        .music-bar:nth-child(2) { height: 20px; animation-delay: 0.4s; }
+        .music-bar:nth-child(3) { height: 12px; animation-delay: 0.6s; }
+        .music-bar:nth-child(4) { height: 18px; animation-delay: 0.8s; }
+
+        @keyframes musicBars {
+            0%, 100% { transform: scaleY(1); }
+            50% { transform: scaleY(0.5); }
+        }
+
+        /* Ajuste para el contenido debajo del header */
+        .contact-section {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            min-height: 100vh;
+            padding: 120px 0; /* Aumentado para dar espacio al header fijo */
+            color: white;
+        }
+
+        .contact-card {
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 45px rgba(0,0,0,0.3);
+        }
+
+        .form-control {
+            border-radius: 10px;
+            border: 2px solid #eee;
+            padding: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            border-color: #2a5298;
+            box-shadow: 0 0 15px rgba(42,82,152,0.2);
+            transform: translateY(-2px);
+        }
+
+        .btn-submit {
+            background: linear-gradient(45deg, #1e3c72, #2a5298);
+            border: none;
+            border-radius: 10px;
+            padding: 12px 30px;
+            color: white;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .btn-submit:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .icon-box {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #1e3c72, #2a5298);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .icon-box:hover {
+            transform: rotate(360deg);
+        }
+
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .neon-text {
+            text-shadow: 0 0 10px rgba(255,255,255,0.8),
+                         0 0 20px rgba(255,255,255,0.8),
+                         0 0 30px rgba(42,82,152,0.8);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Nuevo -->
+    <header class="header animate__animated animate__slideInDown">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-dark">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="#">
+                        <div class="logo-container">
+                            <div class="music-bars">
+                                <div class="music-bar"></div>
+                                <div class="music-bar"></div>
+                                <div class="music-bar"></div>
+                                <div class="music-bar"></div>
+                            </div>
+                            <span class="logo-text">MusicZone Pro</span>
+                        </div>
+                    </a>
+                    
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav ms-auto">
+                            <li class="nav-item">
+                                <a class="nav-link animate__animated animate__fadeIn" href="#">Inicio</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link animate__animated animate__fadeIn animate__delay-1s" href="#">Artistas</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link animate__animated animate__fadeIn animate__delay-2s" href="./todo.php">musica</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link animate__animated animate__fadeIn animate__delay-3s" href="#">Contacto</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+        <div class="container">
+            <h2 class="text-center mb-5 animate__animated animate__fadeInDown neon-text">
+                Solicitud de Contacto
+            </h2>
+            
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="card contact-card animate__animated animate__zoomIn">
+                        <div class="card-body p-5">
+                            <div class="row mb-4">
+                                <div class="col-md-4 text-center animate__animated animate__fadeInLeft">
+                                    <div class="icon-box mx-auto">
+                                        <i class="fas fa-music text-white"></i>
+                                    </div>
+                                    <h5>Música</h5>
+                                </div>
+                                <div class="col-md-4 text-center animate__animated animate__fadeInUp">
+                                    <div class="icon-box mx-auto">
+                                        <i class="fas fa-star text-white"></i>
+                                    </div>
+                                    <h5>Artistas</h5>
+                                </div>
+                                <div class="col-md-4 text-center animate__animated animate__fadeInRight">
+                                    <div class="icon-box mx-auto">
+                                        <i class="fas fa-headphones text-white"></i>
+                                    </div>
+                                    <h5>Eventos</h5>
+                                </div>
+                            </div>
+
+                            <form class="animate__animated animate__fadeInUp">
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Nombre Completo</label>
+                                        <input type="text" class="form-control" placeholder="Tu nombre">
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Correo Electrónico</label>
+                                        <input type="email" class="form-control" placeholder="tucorreo@ejemplo.com">
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label">Tipo de Solicitud</label>
+                                    <select class="form-control">
+                                        <option>Contratación de Artista</option>
+                                        <option>Organización de Evento</option>
+                                        <option>Colaboración Musical</option>
+                                        <option>Consulta General</option>
+                                    </select>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label">Fecha Preferida</label>
+                                    <input type="date" class="form-control">
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label">Presupuesto Estimado</label>
+                                    <select class="form-control">
+                                        <option>Menos de $1000</option>
+                                        <option>$1000 - $5000</option>
+                                        <option>$5000 - $10000</option>
+                                        <option>Más de $10000</option>
+                                    </select>
+                                </div>
+
+                                <div class="mb-4">
+                                    <label class="form-label">Detalles de la Solicitud</label>
+                                    <textarea class="form-control" rows="5" placeholder="Describe tu solicitud en detalle..."></textarea>
+                                </div>
+
+                                <div class="d-grid">
+                                    <button type="submit" class="btn btn-submit animate__animated animate__pulse animate__infinite">
+                                        <i class="fas fa-paper-plane me-2"></i>Enviar Solicitud
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Script para el efecto de scroll en el header
+      
+    </script>
+</body>
+</html>
